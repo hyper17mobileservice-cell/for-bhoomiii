@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars */
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Black background like in the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+}
+
+.message-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    justify-content: center; /* Center items horizontally */
+    align-items: flex-start; /* Align items to the top if multiple columns */
+    align-content: flex-start; /* Aligns lines of content to the start */
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevent container scrollbars */
+    padding: 10px; /* Some padding to prevent text from touching edges */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+.message-item {
+    color: white; /* White text for "I Love You" */
+    font-size: clamp(10px, 2vw, 20px); /* Responsive font size */
+    white-space: nowrap; /* Keep "I Love You ❤️" on one line */
+    margin: 0px 3px; /* Small margin between messages */
+    line-height: 1.2; /* Adjust line height for better spacing */
+    flex-shrink: 0; /* Prevent items from shrinking */
+    padding: 2px 0; /* Vertical padding for better spacing */
+}
+
+.heart {
+    color: red;
+}
+
+/* Media Queries for better mobile/PC appearance */
+@media (max-width: 768px) {
+    .message-item {
+        font-size: clamp(8px, 3vw, 16px); /* Slightly smaller on mobile */
+        margin: 0 2px;
+    }
+    .message-container {
+        padding: 5px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .message-item {
+        font-size: clamp(12px, 1.5vw, 22px); /* Slightly larger on desktop */
+        margin: 0 4px;
+    }
+}
