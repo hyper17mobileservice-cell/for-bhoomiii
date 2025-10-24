@@ -1,51 +1,54 @@
-/* Basic body reset and full screen setup */
-body {
-    margin: 0;
-    overflow: hidden; /* Hide scrollbars */
-    font-family: Arial, sans-serif;
-    background-color: #000; /* Black background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const messageContainer = document.getElementById('messageContainer');
+    // Your personalized message
+    const baseMessage = "I Love You Bhoomiiii ❤️"; 
+    
+    // Create the message with a styled heart
+    const heartMessage = baseMessage.replace('❤️', '<span class="heart">❤️</span>');
 
-/* Container for all messages. Uses Flexbox to wrap the content. */
-.message-container {
-    display: flex;
-    flex-wrap: wrap; /* Allows messages to wrap onto the next line */
-    justify-content: center; /* Centers the messages horizontally */
-    align-content: flex-start; /* Aligns lines of content to the top */
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    padding: 5px; /* Small padding so text isn't right on the edge */
-    box-sizing: border-box;
-}
+    const populateMessages = () => {
+        messageContainer.innerHTML = '';
 
-/* Styling for a single message item */
-.message-item {
-    color: white; /* White text for contrast on black */
-    /* Clamp is key for responsiveness: Min size, viewport-based size, Max size */
-    font-size: clamp(10px, 2.5vw, 20px); 
-    white-space: nowrap; /* Keep the entire message on a single line */
-    margin: 0 4px; /* Small horizontal space between messages */
-    line-height: 1.2; /* Spacing between rows */
-    flex-shrink: 0; /* Prevents items from squishing smaller than their content */
-    padding: 2px 0; /* Vertical padding for better row separation */
-    user-select: none; /* Prevents selecting the text, keeping the display cleaner */
-}
+        // 1. Temporarily add one item to measure its actual size
+        const tempItem = document.createElement('span');
+        tempItem.classList.add('message-item');
+        tempItem.innerHTML = heartMessage;
+        messageContainer.appendChild(tempItem);
 
-/* Style the heart specifically to be red */
-.heart {
-    color: red;
-}
+        const itemWidth = tempItem.offsetWidth;
+        const itemHeight = tempItem.offsetHeight;
 
-/* Optimization for smaller mobile screens */
-@media (max-width: 600px) {
-    .message-item {
-        font-size: clamp(8px, 4vw, 16px);
-        margin: 0 2px;
-    }
-}
+        messageContainer.removeChild(tempItem);
+
+        if (itemWidth === 0 || itemHeight === 0) {
+            // Retry if unable to measure size immediately
+            setTimeout(populateMessages, 200);
+            return;
+        }
+
+        const containerWidth = messageContainer.offsetWidth;
+        const containerHeight = messageContainer.offsetHeight;
+
+        // 2. Calculate the number of rows and columns needed
+        // +1 or +2 ensures the edges are fully covered
+        const numCols = Math.floor(containerWidth / itemWidth) + 1; 
+        const numRows = Math.floor(containerHeight / itemHeight) + 2; 
+
+        const totalMessages = numCols * numRows;
+
+        // 3. Efficiently create and add all messages
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < totalMessages; i++) {
+            const span = document.createElement('span');
+            span.classList.add('message-item');
+            span.innerHTML = heartMessage;
+            fragment.appendChild(span);
+        }
+        
+        messageContainer.appendChild(fragment);
+    };
+
+    // Run the function when the page loads and whenever the window is resized
+    populateMessages();
+    window.addEventListener('resize', populateMessages);
+});
