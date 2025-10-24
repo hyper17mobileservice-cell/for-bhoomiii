@@ -1,56 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I Love You ❤️</title>
-<style>
-  body {
-    margin: 0;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Love You Bhoomi ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    text-align: center;
-    line-height: 1.1;
-    font-weight: bold;
-    color: white;
-  }
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+    }
 
-  .cell {
-    color: white;
-    white-space: nowrap;
-    font-size: 16px;
-  }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-auto-rows: 1em;
+      gap: 4px;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-  .heart {
-    color: red;
-  }
-</style>
+    .text {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .heart {
+      color: red;
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 14px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="grid" id="grid"></div>
+  <div class="container" id="pattern"></div>
 
   <script>
-    const grid = document.getElementById("grid");
-    const text = "I Love You bhoomi ❤️";
-    const columns = Math.floor(window.innerWidth / 100);
-    const rows = Math.floor(window.innerHeight / 25);
+    const container = document.getElementById("pattern");
+    const phrase = "I Love You bhoomi ❤️ ";
 
-    for (let i = 0; i < columns * rows; i++) {
-      const div = document.createElement("div");
-      div.className = "cell";
-      div.innerHTML = text;
-      grid.appendChild(div);
+    // Fill the grid dynamically to fit screen
+    function fillGrid() {
+      container.innerHTML = "";
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const textWidth = 120; // estimated px width per text block
+      const textHeight = 25; // estimated px height per text line
+      const cols = Math.ceil(width / textWidth);
+      const rows = Math.ceil(height / textHeight);
+
+      for (let i = 0; i < cols * rows; i++) {
+        const div = document.createElement("div");
+        div.className = "text";
+        div.innerHTML = I Love You bhoomi <span class="heart">❤️</span>;
+        container.appendChild(div);
+      }
     }
+
+    fillGrid();
+    window.addEventListener("resize", fillGrid);
   </script>
 </body>
 </html>
