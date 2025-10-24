@@ -26,7 +26,7 @@ body {
 .message-item {
     color: white; /* White text for "I Love You" */
     font-size: clamp(10px, 2vw, 20px); /* Responsive font size */
-    white-space: nowrap; /* Keep "I Love You ❤️" on one line */
+    white-space: nowrap; /* Keep "I Love You Bhoomiii ❤️" on one line */
     margin: 0px 3px; /* Small margin between messages */
     line-height: 1.2; /* Adjust line height for better spacing */
     flex-shrink: 0; /* Prevent items from shrinking */
