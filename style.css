@@ -1,9 +1,9 @@
-/* Basic body reset and full screen setup */
+/* Basic reset for full-screen black background */
 body {
     margin: 0;
-    overflow: hidden; /* Hide scrollbars */
+    overflow: hidden;
     font-family: Arial, sans-serif;
-    background-color: #000; /* Black background */
+    background-color: #000; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,38 +11,38 @@ body {
     width: 100vw; /* Full viewport width */
 }
 
-/* Container for all messages. Uses Flexbox to wrap the content. */
+/* Flexbox container allows messages to wrap and fill space */
 .message-container {
     display: flex;
-    flex-wrap: wrap; /* Allows messages to wrap onto the next line */
-    justify-content: center; /* Centers the messages horizontally */
-    align-content: flex-start; /* Aligns lines of content to the top */
+    flex-wrap: wrap; 
+    justify-content: center;
+    align-content: flex-start;
     height: 100%;
     width: 100%;
     overflow: hidden;
-    padding: 5px; /* Small padding so text isn't right on the edge */
+    padding: 5px; 
     box-sizing: border-box;
 }
 
 /* Styling for a single message item */
 .message-item {
-    color: white; /* White text for contrast on black */
-    /* Clamp is key for responsiveness: Min size, viewport-based size, Max size */
+    color: white; 
+    /* Responsive font size for PC and Mobile */
     font-size: clamp(10px, 2.5vw, 20px); 
-    white-space: nowrap; /* Keep the entire message on a single line */
-    margin: 0 4px; /* Small horizontal space between messages */
-    line-height: 1.2; /* Spacing between rows */
-    flex-shrink: 0; /* Prevents items from squishing smaller than their content */
-    padding: 2px 0; /* Vertical padding for better row separation */
-    user-select: none; /* Prevents selecting the text, keeping the display cleaner */
+    white-space: nowrap; /* Keep the full message on one line */
+    margin: 0 4px; /* Space between messages */
+    line-height: 1.2; 
+    flex-shrink: 0; 
+    padding: 2px 0;
+    user-select: none; /* Prevents text selection for a cleaner look */
 }
 
-/* Style the heart specifically to be red */
+/* Ensures the heart is always red */
 .heart {
     color: red;
 }
 
-/* Optimization for smaller mobile screens */
+/* Mobile optimization */
 @media (max-width: 600px) {
     .message-item {
         font-size: clamp(8px, 4vw, 16px);
