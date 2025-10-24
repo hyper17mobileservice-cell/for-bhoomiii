@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const messageContainer = document.getElementById('messageContainer');
-    const message = "I Love You bhoomiiii ❤️"; // The message to display
+    const message = "I Love You Bhoomiiii ❤️"; // The message to display
 
     // Function to calculate how many messages can fit
     const populateMessages = () => {
