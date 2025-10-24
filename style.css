@@ -1,9 +1,9 @@
-/* Basic reset for full-screen black background */
+/* Basic body reset and full screen setup */
 body {
     margin: 0;
-    overflow: hidden;
+    overflow: hidden; /* Hide scrollbars */
     font-family: Arial, sans-serif;
-    background-color: #000; 
+    background-color: #000; /* Black background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,41 +11,43 @@ body {
     width: 100vw; /* Full viewport width */
 }
 
-/* Flexbox container allows messages to wrap and fill space */
+/* Container for all messages. Uses Flexbox to wrap the content. */
 .message-container {
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    align-content: flex-start;
+    flex-wrap: wrap; /* Allows messages to wrap onto the next line */
+    justify-content: center; /* Centers the messages horizontally */
+    align-content: flex-start; /* Aligns lines of content to the top */
     height: 100%;
     width: 100%;
     overflow: hidden;
-    padding: 5px; 
+    padding: 2px; /* Reduced padding */
     box-sizing: border-box;
 }
 
 /* Styling for a single message item */
 .message-item {
-    color: white; 
-    /* Responsive font size for PC and Mobile */
-    font-size: clamp(10px, 2.5vw, 20px); 
-    white-space: nowrap; /* Keep the full message on one line */
-    margin: 0 4px; /* Space between messages */
-    line-height: 1.2; 
+    color: white; /* White text for contrast on black */
+    /* * MODIFIED FONT SIZE HERE * */
+    /* Smaller font size will fit more columns across the screen */
+    font-size: clamp(8px, 1.8vw, 16px); 
+    white-space: nowrap; /* Keep the entire message on a single line */
+    margin: 0 2px; /* Reduced horizontal space */
+    line-height: 1.1; /* Reduced line height */
     flex-shrink: 0; 
-    padding: 2px 0;
-    user-select: none; /* Prevents text selection for a cleaner look */
+    padding: 1px 0; /* Reduced vertical padding */
+    user-select: none; 
 }
 
-/* Ensures the heart is always red */
+/* Style the heart specifically to be red */
 .heart {
     color: red;
 }
 
-/* Mobile optimization */
+/* Optimization for smaller mobile screens */
 @media (max-width: 600px) {
     .message-item {
-        font-size: clamp(8px, 4vw, 16px);
-        margin: 0 2px;
+        /* Even smaller on mobile to get 3-4 columns */
+        font-size: clamp(6px, 3vw, 14px);
+        margin: 0 1px;
     }
 }
