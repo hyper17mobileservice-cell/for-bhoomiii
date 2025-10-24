@@ -1,81 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I Love You Bhoomi ❤️</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: bold;
-      color: white;
-      font-size: 20px;
-      text-align: center;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      grid-auto-rows: 1em;
-      gap: 4px;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .text {
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    .heart {
-      color: red;
-    }
-
-    @media (max-width: 600px) {
-      body { font-size: 14px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container" id="pattern"></div>
-
-  <script>
-    const container = document.getElementById("pattern");
-    const phrase = "I Love You bhoomi ❤️ ";
-
-    // Fill the grid dynamically to fit screen
-    function fillGrid() {
-      container.innerHTML = "";
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const textWidth = 120; // estimated px width per text block
-      const textHeight = 25; // estimated px height per text line
-      const cols = Math.ceil(width / textWidth);
-      const rows = Math.ceil(height / textHeight);
-
-      for (let i = 0; i < cols * rows; i++) {
-        const div = document.createElement("div");
-        div.className = "text";
-        div.innerHTML = I Love You bhoomi <span class="heart">❤️</span>;
-        container.appendChild(div);
-      }
-    }
-
-    fillGrid();
-    window.addEventListener("resize", fillGrid);
-  </script>
+    <div class="message-container" id="messageContainer"></div>
+    <script src="script.js"></script>
 </body>
 </html>
